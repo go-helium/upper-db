@@ -7,17 +7,30 @@ import (
 	"go.uber.org/dig"
 	"go.uber.org/zap"
 	"upper.io/db.v3"
+	"upper.io/db.v3/lib/sqlbuilder"
 )
 
 type (
 	// MySQL is wrapper over upper/db Database
 	MySQL interface {
 		db.Database
+		sqlbuilder.SQLBuilder
+	}
+
+	mysqlConnection struct {
+		db.Database
+		sqlbuilder.SQLBuilder
 	}
 
 	// PG is wrapper over upper/db Database
 	PG interface {
 		db.Database
+		sqlbuilder.SQLBuilder
+	}
+
+	postgresConnection struct {
+		db.Database
+		sqlbuilder.SQLBuilder
 	}
 
 	// ConnectionResult for default module
