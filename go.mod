@@ -3,7 +3,6 @@ module github.com/go-helium/upper-db
 go 1.12
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/denisenkom/go-mssqldb v0.0.0-20190423183735-731ef375ac02 // indirect
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/im-kulikov/helium v0.11.10
