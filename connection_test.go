@@ -4,7 +4,6 @@ import (
 	"net/url"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
@@ -13,93 +12,13 @@ import (
 	"upper.io/db.v3"
 )
 
-type testAdapter struct{}
+type testAdapter struct {
+	db.Database
+}
 
 const errTest = Error("test")
 
-func (testAdapter) Driver() interface{} {
-	panic("implement me")
-}
-
-func (testAdapter) Open(db.ConnectionURL) error {
-	panic("implement me")
-}
-
-func (testAdapter) Ping() error {
-	return errTest
-}
-
-func (testAdapter) Close() error {
-	panic("implement me")
-}
-
-func (testAdapter) Collection(string) db.Collection {
-	panic("implement me")
-}
-
-func (testAdapter) Collections() ([]string, error) {
-	panic("implement me")
-}
-
-func (testAdapter) Name() string {
-	panic("implement me")
-}
-
-func (testAdapter) ConnectionURL() db.ConnectionURL {
-	panic("implement me")
-}
-
-func (testAdapter) ClearCache() {
-	panic("implement me")
-}
-
-func (testAdapter) SetLogging(bool) {
-	panic("implement me")
-}
-
-func (testAdapter) LoggingEnabled() bool {
-	panic("implement me")
-}
-
-func (testAdapter) SetLogger(db.Logger) {
-	panic("implement me")
-}
-
-func (testAdapter) Logger() db.Logger {
-	panic("implement me")
-}
-
-func (testAdapter) SetPreparedStatementCache(bool) {
-	panic("implement me")
-}
-
-func (testAdapter) PreparedStatementCacheEnabled() bool {
-	panic("implement me")
-}
-
-func (testAdapter) SetConnMaxLifetime(time.Duration) {
-	panic("implement me")
-}
-
-func (testAdapter) ConnMaxLifetime() time.Duration {
-	panic("implement me")
-}
-
-func (testAdapter) SetMaxIdleConns(int) {
-	panic("implement me")
-}
-
-func (testAdapter) MaxIdleConns() int {
-	panic("implement me")
-}
-
-func (testAdapter) SetMaxOpenConns(int) {
-	panic("implement me")
-}
-
-func (testAdapter) MaxOpenConns() int {
-	panic("implement me")
-}
+func (testAdapter) Ping() error { return errTest }
 
 func TestConnection(t *testing.T) {
 	v := viper.New()
