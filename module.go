@@ -21,7 +21,7 @@ var (
 )
 
 func newMySQLConnection(v *viper.Viper, l *zap.Logger) (MySQL, error) {
-	opts, err := prepareConfig("database.mysql", v, l)
+	opts, err := PrepareConfig("database.mysql", v, l)
 	if err != nil {
 		return nil, errors.Wrap(err, "could not prepare mysql config")
 	}
@@ -40,7 +40,7 @@ func newMySQLConnection(v *viper.Viper, l *zap.Logger) (MySQL, error) {
 }
 
 func newPostgresConnection(v *viper.Viper, l *zap.Logger) (PG, error) {
-	opts, err := prepareConfig("database.postgres", v, l)
+	opts, err := PrepareConfig("database.postgres", v, l)
 	if err != nil {
 		return nil, errors.Wrap(err, "could not prepare postgres config")
 	}

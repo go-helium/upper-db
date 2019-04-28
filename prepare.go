@@ -24,7 +24,8 @@ var replacements = map[string]string{
 	"parsetime": "parseTime",
 }
 
-func prepareConfig(key string, v *viper.Viper, log *zap.Logger) ([]ConnectionOption, error) {
+// PrepareConfig prepare options for connection
+func PrepareConfig(key string, v *viper.Viper, log *zap.Logger) ([]ConnectionOption, error) {
 	if key == "" || !v.IsSet(key+".adapter") {
 		return nil, errors.Wrapf(ErrConfigNotFound, key)
 	}

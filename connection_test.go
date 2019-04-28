@@ -61,7 +61,7 @@ func TestConnection(t *testing.T) {
 
 			for _, adapter := range databases {
 				t.Run(adapter, func(t *testing.T) {
-					conf, err := prepareConfig(adapter, v, log)
+					conf, err := PrepareConfig(adapter, v, log)
 					require.NoError(t, err)
 					conn, err := NewConnection(conf...)
 					require.NoError(t, err)
@@ -125,7 +125,7 @@ func TestConnection(t *testing.T) {
 
 			for _, adapter := range databases {
 				t.Run(adapter, func(t *testing.T) {
-					conf, err := prepareConfig(adapter, v, log)
+					conf, err := PrepareConfig(adapter, v, log)
 					require.NoError(t, err)
 					_, err = NewConnection(conf...)
 					require.Error(t, err)
@@ -179,7 +179,7 @@ func TestConnection(t *testing.T) {
 	})
 
 	t.Run("should fail ErrUnknownKey", func(t *testing.T) {
-		_, err := prepareConfig(databaseKey+".unknown", v, log)
+		_, err := PrepareConfig(databaseKey+".unknown", v, log)
 		require.EqualError(t,
 			errors.Cause(err),
 			ErrConfigNotFound.Error())
@@ -187,7 +187,7 @@ func TestConnection(t *testing.T) {
 
 	t.Run("should fail ErrUnknownAdapter", func(t *testing.T) {
 		v.SetDefault("test.adapter", "test")
-		_, err := prepareConfig("test", v, log)
+		_, err := PrepareConfig("test", v, log)
 		require.EqualError(t,
 			errors.Cause(err),
 			ErrUnknownAdapter.Error())
@@ -196,7 +196,7 @@ func TestConnection(t *testing.T) {
 	t.Run("should fail ErrEmptyAdapter", func(t *testing.T) {
 		t.Run("for prepare config", func(t *testing.T) {
 			v.SetDefault("test.adapter", "")
-			_, err := prepareConfig("test", v, log)
+			_, err := PrepareConfig("test", v, log)
 			require.EqualError(t,
 				errors.Cause(err),
 				ErrEmptyAdapter.Error())
